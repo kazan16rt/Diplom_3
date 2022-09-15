@@ -10,4 +10,9 @@ public class RecoverPassword extends BasePage {
 
     private By loginButton = By.xpath(".//a[@href='/login']");
 
+    public Login clickLoginButton() {
+        driver.findElement(loginButton).click();
+        return new Login(driver);
+    }
+
 }

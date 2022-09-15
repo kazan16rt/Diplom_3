@@ -10,4 +10,9 @@ public class Profile extends BasePage {
 
     private By exitProfileButton = By.xpath(".//button[@type='button' and text()='Выход']");
 
+    public Login clickExitProfileButton() {
+        driver.findElement(exitProfileButton).click();
+        return new Login(driver);
+    }
+
 }
