@@ -7,7 +7,6 @@ public class Header extends BasePage {
     public Header(WebDriver driver) {
         this.driver = driver;
     }
-
     private By constructorButton = By.xpath(".//header//p[text()='Конструктор']");
     private By profileButton = By.xpath(".//header//p[text()='Личный Кабинет']");
     private By logoInHeader = By.className("AppHeader_header__logo__2D0X2");
@@ -16,7 +15,6 @@ public class Header extends BasePage {
         driver.findElement(constructorButton).click();
         return new HomePage(driver);
     }
-
     public Profile clickProfileButton() {
         driver.findElement(profileButton).click();
         return new Profile(driver);

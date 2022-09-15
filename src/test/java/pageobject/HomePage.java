@@ -8,7 +8,6 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
-
     private By bunTab = By.xpath(".//span[@class='text text_type_main-default' and text()='Булки']");
     private By sauceTab = By.xpath(".//span[@class='text text_type_main-default' and text()='Соусы']");
     private By fillingTab = By.xpath(".//span[@class='text text_type_main-default' and text()='Начинки']");

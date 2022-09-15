@@ -7,7 +7,6 @@ public class Register extends BasePage{
     public Register(WebDriver driver) {
         this.driver = driver;
     }
-
     private By loginButton = By.xpath(".//a[@href='/login']");
 
     private By nameField = By.xpath(".//label[text()='Имя']");
