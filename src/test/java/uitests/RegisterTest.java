@@ -50,7 +50,7 @@ public class RegisterTest extends BaseTest {
 
         token = response.extract().path("accessToken");
         Boolean success = response.extract().path("success");
-        assertTrue("Login failed", success);
+        assertTrue("User is not registered", success);
     }
 
     @Test

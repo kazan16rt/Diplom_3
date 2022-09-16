@@ -29,10 +29,7 @@ public class Register extends BasePage{
         return this;
     }
     public Register setEmailField(String email) {
-//        new WebDriverWait(driver, Duration.ofSeconds(3))
-//                .until(ExpectedConditions.elementToBeClickable(emailField));
         driver.findElements(emailField).get(1).sendKeys(email);
-//        driver.findElement(emailField).sendKeys(email);
         return this;
     }
     public Register setPasswordField(String password) {

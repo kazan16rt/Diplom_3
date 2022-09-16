@@ -11,20 +11,20 @@ public class SwitchConstructorTabsTest extends  BaseTest {
 
     @Test
     public void checkConstructorTabs() {
-        String sauceTub = new HomePage(driver)
+        String selectedTab = new HomePage(driver)
                 .open()
                 .clickSauceTab()
                 .getClassNameSauceTub();
-        assertEquals("Open wrong tab", sauceTub, expectedTabClassName);
+        assertEquals("Open wrong tab", selectedTab, expectedTabClassName);
 
-        sauceTub = new HomePage(driver)
+        selectedTab = new HomePage(driver)
                 .clickFillingTab()
                 .getClassNameFillingTub();
-        assertEquals("Open wrong tab", sauceTub, expectedTabClassName);
+        assertEquals("Open wrong tab", selectedTab, expectedTabClassName);
 
-        sauceTub = new HomePage(driver)
+        selectedTab = new HomePage(driver)
                 .clickBunTab()
                 .getClassNameBunTub();
-        assertEquals("Open wrong tab", sauceTub, expectedTabClassName);
+        assertEquals("Open wrong tab", selectedTab, expectedTabClassName);
     }
 }
