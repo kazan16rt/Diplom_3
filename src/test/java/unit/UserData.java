@@ -1,10 +1,13 @@
 package unit;
 
+import com.github.javafaker.Faker;
+
 public class UserData {
     public static User getDefault() {
-        return new User("potato@yandex.ru", "123456", "John");
-    }
-    public static User getChangedUser() {
-        return new User("tomato@yandex.ru", "54321", "Gray");
+        Faker faker = new Faker();
+        String email = faker.internet().emailAddress();
+        String name = faker.name().firstName();
+        String password = faker.internet().password();
+        return new User(email, password, name);
     }
 }

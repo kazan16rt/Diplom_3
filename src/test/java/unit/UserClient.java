@@ -6,9 +6,21 @@ import io.restassured.response.ValidatableResponse;
 import static io.restassured.RestAssured.given;
 
 public class UserClient extends BaseClient {
+    private static final String USER_REGISTER_PATH = "/api/auth/register";
     private static final String USER_LOGIN_PATH = "/api/auth/login";
     private static final String USER_DELETE_PATH = "/api/auth/user";
 
+    @Step("Send POST request to {USER_REGISTER_PATH}")
+    public ValidatableResponse register(User user) {
+        return given()
+                .log().all()
+                .spec(getSpec())
+                .body(user)
+                .when()
+                .post(USER_REGISTER_PATH)
+                .then()
+                .log().all();
+    }
     @Step("Send POST request to {USER_LOGIN_PATH}")
     public ValidatableResponse login(UserCredentials userCredentials) {
         return given()

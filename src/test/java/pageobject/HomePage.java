@@ -2,7 +2,10 @@ package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage {
     public static final String HOME_URL = "https://stellarburgers.nomoreparties.site/";
@@ -13,6 +16,8 @@ public class HomePage extends BasePage {
     private By sauceTab = By.xpath(".//span[@class='text text_type_main-default' and text()='Соусы']/parent::div");
     private By fillingTab = By.xpath(".//span[@class='text text_type_main-default' and text()='Начинки']/parent::div");
     private By loginInAccountButton = By.className("button_button__33qZ0");
+    private By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
+    private By headerHomePage = By.xpath(".//h1[text()='Соберите бургер']");
 
     public HomePage open() {
         driver.get(HOME_URL);
@@ -45,6 +50,15 @@ public class HomePage extends BasePage {
     public String getClassNameFillingTub() {
         String element = driver.findElement(fillingTab).getAttribute("class");
         return element;
+    }
+    public String getTextCreateOrderButton() {
+        String text = driver.findElement(createOrderButton).getText();
+        return text;
+    }
+    public HomePage waitHomePage() {
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOfElementLocated(headerHomePage));
+        return this;
     }
 
 }

@@ -1,38 +1,36 @@
 package uitests;
 
-import com.github.javafaker.Faker;
 import io.restassured.response.ValidatableResponse;
-import org.junit.*;
-import pageobject.HomePage;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import pageobject.Login;
 import pageobject.Register;
 import unit.User;
 import unit.UserClient;
 import unit.UserCredentials;
+import unit.UserData;
 
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RegisterTest extends BaseTest {
-    @Before
-    public void beforeClass() {
-        user = new User(email, password, name);
+    @BeforeClass
+    public static void beforeClass() {
+        user = UserData.getDefault();
         userClient = new UserClient();
     }
-    @After
-    public void afterClass() {
+    @AfterClass
+    public static void afterClass() {
         if(token != null) {
             userClient.delete(token);
         }
     }
-    private User user;
-    private UserClient userClient;
-    Faker faker = new Faker();
-    private final String email = faker.internet().emailAddress();
-    private final String name = faker.name().firstName();
-    private final String password = faker.internet().password();
-    private String token;
+    private static User user;
+    private static UserClient userClient;
+    private static String token;
+    private final String expectedErrorText = "Некорректный пароль";
 
     @Test
     public void registerSuccessTest() {
@@ -67,6 +65,6 @@ public class RegisterTest extends BaseTest {
         String error = new Register(driver)
                 .getRegisterError();
 
-        assertEquals("Error text is not expected", "Некорректный пароль", error);
+        assertEquals("Error text is not expected", expectedErrorText, error);
     }
 }
