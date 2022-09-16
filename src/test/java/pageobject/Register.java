@@ -4,27 +4,35 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Register extends BasePage{
+    public static final String REGISTER_URL = "https://stellarburgers.nomoreparties.site/register";
     public Register(WebDriver driver) {
         this.driver = driver;
     }
     private By loginButton = By.xpath(".//a[@href='/login']");
 
-    private By nameField = By.xpath(".//label[text()='Имя']");
-    private By emailField = By.xpath(".//label[text()='Email']");
+    private By nameField = By.className("input__textfield");
+    private By emailField = By.className("input__textfield");
     private By passwordField = By.xpath(".//input[@type='password']");
+    private By enterRegisterButton = By.className("button_button__33qZ0");
+    private By registerError = By.className("input__error");
 
-    private By enterRegisterButton = By.className("button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa");
-
+    public Register open() {
+        driver.get(REGISTER_URL);
+        return this;
+    }
     public Login clickLoginButton() {
         driver.findElement(loginButton).click();
         return new Login(driver);
     }
     public Register setNameField(String name) {
-        driver.findElement(nameField).sendKeys(name);
+        driver.findElements(nameField).get(0).sendKeys(name);
         return this;
     }
     public Register setEmailField(String email) {
-        driver.findElement(emailField).sendKeys(email);
+//        new WebDriverWait(driver, Duration.ofSeconds(3))
+//                .until(ExpectedConditions.elementToBeClickable(emailField));
+        driver.findElements(emailField).get(1).sendKeys(email);
+//        driver.findElement(emailField).sendKeys(email);
         return this;
     }
     public Register setPasswordField(String password) {
@@ -34,5 +42,9 @@ public class Register extends BasePage{
     public Login clickEnterRegisterButton() {
         driver.findElement(enterRegisterButton).click();
         return new Login(driver);
+    }
+    public String getRegisterError() {
+        String text = driver.findElement(registerError).getText();
+        return text;
     }
 }

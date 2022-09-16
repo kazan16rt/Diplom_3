@@ -2,18 +2,27 @@ package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Login extends BasePage {
+    public static final String LOGIN_URL = "https://stellarburgers.nomoreparties.site/login";
     public Login(WebDriver driver) {
         this.driver = driver;
     }
     private By emailField = By.xpath(".//input[@type='text']");
     private By passwordField = By.xpath(".//input[@type='password']");
-    private By enterButton = By.className("button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa");
-
+    private By enterButton = By.className("button_button__33qZ0");
     private By registerButton = By.xpath(".//a[@href='/register']");
     private By recoveryPasswordButton = By.xpath(".//a[@href='/forgot-password']");
+    private By loginPageHeader = By.xpath(".//h2[text()='Вход']");
 
+    public Login open() {
+        driver.get(LOGIN_URL);
+        return this;
+    }
     public Login setEmailField (String email) {
         driver.findElement(emailField).sendKeys(email);
         return this;
@@ -33,5 +42,11 @@ public class Login extends BasePage {
     public RecoverPassword clickRecoveryPasswordButton() {
         driver.findElement(recoveryPasswordButton).click();
         return new RecoverPassword(driver);
+    }
+    public String getLoginPageHeader() {
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOfElementLocated(loginPageHeader));
+        String header = driver.findElement(loginPageHeader).getText();
+        return header;
     }
 }
