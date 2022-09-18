@@ -11,10 +11,10 @@ public class BaseTest {
     protected WebDriver driver;
     @Before
     public void startUp() {
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+//        WebDriverManager.firefoxdriver().setup();
+//        driver = new FirefoxDriver();
     }
 
     @After
