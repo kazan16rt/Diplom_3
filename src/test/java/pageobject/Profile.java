@@ -12,6 +12,7 @@ public class Profile extends BasePage {
         this.driver = driver;
     }
     private By exitProfileButton = By.xpath(".//button[text()='Выход']");
+    private String disabledInputValue = ".//input[@value='%s']";
 
     public Login clickExitProfileButton() {
         driver.findElement(exitProfileButton).click();
@@ -22,5 +23,9 @@ public class Profile extends BasePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(exitProfileButton));
         return this;
     }
-
+    public String getProfileInputValue(String value) {
+        By element = By.xpath(String.format(disabledInputValue, value));
+        String result = driver.findElement(element).getAttribute("value");
+        return result;
+    }
 }

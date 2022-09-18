@@ -17,5 +17,4 @@ public class RecoverPassword extends BasePage {
         driver.findElement(loginButton).click();
         return new Login(driver);
     }
-
 }

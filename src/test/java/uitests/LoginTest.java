@@ -13,7 +13,6 @@ import static org.junit.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-
     @BeforeClass
     public static void beforeClass() {
         user = UserData.getDefault();

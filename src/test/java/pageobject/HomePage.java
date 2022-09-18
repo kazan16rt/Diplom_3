@@ -60,5 +60,4 @@ public class HomePage extends BasePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(headerHomePage));
         return this;
     }
-
 }
