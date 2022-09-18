@@ -13,8 +13,15 @@ public class Profile extends BasePage {
     }
     private By exitProfileButton = By.xpath(".//button[text()='Выход']");
     private String disabledInputValue = ".//input[@value='%s']";
+    private By modalOverlay = By.className("Modal_modal__loading__3534A");
+    private By loginPageHeader = By.xpath(".//h2[text()='Вход']");
 
     public Login clickExitProfileButton() {
+//
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(modalOverlay)));
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(modalOverlay)));
         driver.findElement(exitProfileButton).click();
         return new Login(driver);
     }

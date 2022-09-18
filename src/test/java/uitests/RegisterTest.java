@@ -1,9 +1,7 @@
 package uitests;
 
 import io.restassured.response.ValidatableResponse;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import pageobject.Login;
 import pageobject.Register;
 import unit.User;
@@ -16,20 +14,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RegisterTest extends BaseTest {
-    @BeforeClass
-    public static void beforeClass() {
+    @Before
+    public void beforeClass() {
         user = UserData.getDefault();
         userClient = new UserClient();
     }
-    @AfterClass
-    public static void afterClass() {
+    @After
+    public void afterClass() {
         if(token != null) {
             userClient.delete(token);
         }
     }
-    private static User user;
-    private static UserClient userClient;
-    private static String token;
+    private User user;
+    private UserClient userClient;
+    private String token;
     private final String expectedErrorText = "Некорректный пароль";
 
     @Test

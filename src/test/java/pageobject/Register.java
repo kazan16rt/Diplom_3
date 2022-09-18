@@ -2,6 +2,10 @@ package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Register extends BasePage{
     public static final String REGISTER_URL = "https://stellarburgers.nomoreparties.site/register";
@@ -15,9 +19,12 @@ public class Register extends BasePage{
     private By passwordField = By.xpath(".//input[@type='password']");
     private By enterRegisterButton = By.className("button_button__33qZ0");
     private By registerError = By.className("input__error");
+    private By modalLoader = By.className("Modal_modal__loading__3534A");
 
     public Register open() {
         driver.get(REGISTER_URL);
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(modalLoader)));
         return this;
     }
     public Login clickLoginButton() {

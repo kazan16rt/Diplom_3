@@ -18,9 +18,12 @@ public class HomePage extends BasePage {
     private By loginInAccountButton = By.className("button_button__33qZ0");
     private By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
     private By headerHomePage = By.xpath(".//h1[text()='Соберите бургер']");
+    private By modalLoader = By.className("Modal_modal__loading__3534A");
 
     public HomePage open() {
         driver.get(HOME_URL);
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(modalLoader)));
         return this;
     }
     public HomePage clickBunTab() {
@@ -39,7 +42,8 @@ public class HomePage extends BasePage {
         driver.findElement(loginInAccountButton).click();
         return new Login(driver);
     }
-    public String getClassNameBunTub() {
+    public String getClassNameBunTub() throws InterruptedException {
+        Thread.sleep(1000);
         String element = driver.findElement(bunTab).getAttribute("class");
         return element;
     }

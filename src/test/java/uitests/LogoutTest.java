@@ -32,7 +32,7 @@ public class LogoutTest extends BaseTest {
     private final String expectedText = "Вход";
 
     @Test
-    public void logoutTest() {
+    public void logoutTest() throws InterruptedException {
         new Login(driver)
                 .open()
                 .setEmailField(user.getEmail())

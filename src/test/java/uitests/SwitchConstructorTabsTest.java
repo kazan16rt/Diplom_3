@@ -10,7 +10,7 @@ public class SwitchConstructorTabsTest extends  BaseTest {
     private final String expectedTabClassName = "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect";
 
     @Test
-    public void checkConstructorTabs() {
+    public void checkConstructorTabs() throws InterruptedException {
         String selectedTab = new HomePage(driver)
                 .open()
                 .clickSauceTab()
